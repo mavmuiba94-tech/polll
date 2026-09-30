@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Restaurante El Pollo Farsante</title>
+
+    <style>
+
+        /* =========================================
+           CONFIGURACIÓN GENERAL
+        ========================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+
+        /* =========================================
+           ENCABEZADO
+        ========================================= */
+
+        header {
+            background: linear-gradient(135deg, #b30000, #e63900);
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+        }
+
+        header > div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        header img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+        }
+
+        header h1 {
+            font-size: 32px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 20px;
+            font-style: italic;
+            color: #ffe600;
+        }
+
+
+        /* =========================================
+           MENÚ DE NAVEGACIÓN
+        ========================================= */
+
+        nav {
+            background-color: #222;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav li {
+            margin: 0;
+        }
+
+        nav a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 16px 25px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #e63900;
+            color: white;
+        }
+
+
+        /* =========================================
+           GALERÍA PRINCIPAL
+        ========================================= */
+
+        #inicio {
+            padding: 30px 5%;
+            background-color: white;
+        }
+
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .galeria img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 12px;
+
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+
+            transition: 0.4s;
+        }
+
+        .galeria img:hover {
+            transform: scale(1.05);
+        }
+
+
+        /* =========================================
+           SECCIONES
+        ========================================= */
+
+        section {
+            padding: 50px 8%;
+        }
+
+        section h2 {
+            text-align: center;
+            color: #b30000;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        section h2::after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #f5c400;
+            margin: 10px auto;
+            border-radius: 5px;
+        }
+
+
+        /* =========================================
+           SOBRE NOSOTROS
+        ========================================= */
+
+        #nosotros {
+            background-color: #fff3e0;
+        }
+
+        #nosotros p {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+            font-size: 18px;
+        }
+
+
+        /* =========================================
+           PRODUCTOS
+        ========================================= */
+
+        #productos {
+            background-color: #f5f5f5;
+        }
+
+        .productos {
+            max-width: 1200px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+
+        /* =========================================
+           TARJETAS
+        ========================================= */
+
+        article {
+            position: relative;
+
+            background-color: white;
+
+            border-radius: 15px;
+
+            overflow: hidden;
+
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+
+            transition: 0.3s;
+        }
+
+        article:hover {
+            transform: translateY(-8px);
+
+            box-shadow:
+                0 10px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        article > img {
+            width: 100%;
+            height: 220px;
+
+            object-fit: cover;
+        }
+
+
+        /* =========================================
+           ETIQUETA DEL PRODUCTO
+        ========================================= */
+
+        .etiqueta {
+            position: absolute;
+
+            top: 12px;
+            left: 12px;
+
+            background-color: #f5c400;
+
+            color: #222;
+
+            padding: 6px 12px;
+
+            border-radius: 20px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            z-index: 2;
+        }
+
+
+        /* =========================================
+           INFORMACIÓN DEL PRODUCTO
+        ========================================= */
+
+        .informacion {
+            padding: 20px;
+        }
+
+        article h3 {
+            color: #b30000;
+
+            font-size: 21px;
+
+            margin-bottom: 10px;
+        }
+
+        article p {
+            font-size: 15px;
+
+            color: #555;
+
+            margin-bottom: 15px;
+        }
+
+
+        /* =========================================
+           PRECIO
+        ========================================= */
+
+        .precio {
+            display: inline-block;
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+            color: #e63900;
+
+            margin-right: 15px;
+        }
+
+
+        /* =========================================
+           BOTÓN PEDIR
+        ========================================= */
+
+        .btn-pedir {
+            display: inline-block;
+
+            background-color: #25D366;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 9px 18px;
+
+            border-radius: 25px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .btn-pedir:hover {
+            background-color: #128C7E;
+
+            transform: scale(1.05);
+        }
+
+
+        /* =========================================
+           UBICACIÓN
+        ========================================= */
+
+        #contacto {
+            background-color: #222;
+
+            color: white;
+
+            padding: 45px 20px;
+
+            text-align: center;
+        }
+
+        #contacto h2 {
+            color: #f5c400;
+        }
+
+        #contacto h3 {
+            color: #f5c400;
+
+            font-size: 28px;
+
+            margin-bottom: 20px;
+        }
+
+        #contacto iframe {
+            width: 90%;
+
+            max-width: 900px;
+
+            height: 400px;
+
+            border-radius: 15px;
+        }
+
+
+        /* =========================================
+           PIE DE PÁGINA
+        ========================================= */
+
+        footer {
+            background-color: #111;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 35px 20px;
+        }
+
+        footer h3 {
+            color: #f5c400;
+
+            font-size: 24px;
+
+            margin-bottom: 20px;
+        }
+
+        footer .redes {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            margin-bottom: 20px;
+        }
+
+        footer a {
+            color: white;
+
+            text-decoration: none;
+
+            background-color: #b30000;
+
+            padding: 10px 25px;
+
+            border-radius: 25px;
+
+            transition: 0.3s;
+        }
+
+        footer a:hover {
+            background-color: #e63900;
+        }
+
+        footer p {
+            color: #aaa;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================================
+           BOTÓN FLOTANTE WHATSAPP
+        ========================================= */
+
+        .whatsapp-flotante {
+            position: fixed;
+
+            right: 25px;
+
+            bottom: 25px;
+
+            width: 60px;
+
+            height: 60px;
+
+            background-color: #25D366;
+
+            color: white;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-decoration: none;
+
+            font-size: 28px;
+
+            box-shadow:
+                0 5px 15px rgba(0, 0, 0, 0.3);
+
+            z-index: 999;
+
+            transition: 0.3s;
+        }
+
+        .whatsapp-flotante:hover {
+            background-color: #128C7E;
+
+            transform: scale(1.1);
+        }
+
+
+        /* =========================================
+           TABLET
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            header h1 {
+                font-size: 25px;
+            }
+
+            .galeria {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .productos {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            nav a {
+                padding: 14px 15px;
+            }
+        }
+
+
+        /* =========================================
+           CELULAR
+        ========================================= */
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 20px 10px;
+            }
+
+            header > div {
+                flex-direction: column;
+
+                gap: 5px;
+            }
+
+            header img {
+                width: 80px;
+
+                height: 80px;
+            }
+
+            header h1 {
+                font-size: 21px;
+            }
+
+            header p {
+                font-size: 16px;
+            }
+
+
+            /* MENÚ */
+
+            nav {
+                position: static;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav a {
+                width: 100%;
+
+                text-align: center;
+
+                padding: 10px;
+            }
+
+
+            /* GALERÍA */
+
+            #inicio {
+                padding: 20px;
+            }
+
+            .galeria {
+                grid-template-columns: 1fr;
+            }
+
+            .galeria img {
+                height: 230px;
+            }
+
+
+            /* SECCIONES */
+
+            section {
+                padding: 35px 20px;
+            }
+
+            section h2 {
+                font-size: 25px;
+            }
+
+
+            /* PRODUCTOS */
+
+            .productos {
+                grid-template-columns: 1fr;
+            }
+
+            article > img {
+                height: 230px;
+            }
+
+
+            /* MAPA */
+
+            #contacto iframe {
+                width: 100%;
+
+                height: 300px;
+            }
+
+
+            /* FOOTER */
+
+            footer .redes {
+                flex-direction: column;
+
+                align-items: center;
+            }
+
+            footer a {
+                width: 200px;
+            }
+
+
+            /* WHATSAPP */
+
+            .whatsapp-flotante {
+                right: 15px;
+
+                bottom: 15px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         ENCABEZADO
+    ========================================== -->
+
+    <header>
+
+        <div>
+
+            <img src="img/logo.png" alt="Logo Restaurante El Pollo Farsante">
+
+            <h1>
+                RESTAURANTE EL POLLO FARSANTE
+            </h1>
+
+        </div>
+
+        <p>
+            ¡El sabor engañosamente delicioso
+            que te conquistará!
+        </p>
+
+    </header>
+
+
+    <!-- =========================================
+         MENÚ
+    ========================================== -->
+
+    <nav>
+
+        <ul>
+
+            <li>
+                <a href="#inicio">
+                    Inicio
+                </a>
+            </li>
+
+            <li>
+                <a href="#nosotros">
+                    Nosotros
+                </a>
+            </li>
+
+            <li>
+                <a href="#productos">
+                    Productos
+                </a>
+            </li>
+
+            <li>
+                <a href="#contacto">
+                    Contacto
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+    <!-- =========================================
+         GALERÍA PRINCIPAL
+    ========================================== -->
+
+    <section id="inicio">
+
+        <div class="galeria">
+
+            <div>
+                <img
+                    src="img/pollocrispy.jpg"
+                    alt="Pollo Crispy">
+            </div>
+
+            <div>
+                <img
+                    src="img/polloasado.jpg"
+                    alt="Pollo Asado">
+            </div>
+
+            <div>
+                <img
+                    src="img/banquetefamiliar.jpg"
+                    alt="Banquete Familiar">
+            </div>
+
+            <div>
+                <img
+                    src="img/hamburguesaespecial.jpg"
+                    alt="Hamburguesa Especial">
+            </div>
+
+            <div>
+                <img
+                    src="img/papasfritasgourmet.jpg"
+                    alt="Papas Fritas Gourmet">
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         SOBRE NOSOTROS
+    ========================================== -->
+
+    <section id="nosotros">
+
+        <h2>
+            Sobre Nosotros
+        </h2>
+
+        <p>
+
+            En
+            <strong>
+                Restaurante El Pollo Farsante
+            </strong>
+
+            combinamos el toque secreto crujiente
+            con la jugosidad perfecta.
+
+            Nuestra cocina utiliza solo ingredientes
+            frescos para brindarte una experiencia
+            inigualable.
+
+            <br><br>
+
+            ¡Haz tu pedido en línea y compruébalo
+            tú mismo!
+
+        </p>
+
+    </section>
+
+
+    <!-- =========================================
+         PRODUCTOS
+    ========================================== -->
+
+    <section id="productos">
+
+        <h2>
+            Nuestros 6 Productos Estrella
+        </h2>
+
+
+        <div class="productos">
+
+
+            <!-- PRODUCTO 1 -->
+
+            <article>
+
+                <span class="etiqueta">
+                    Más Vendido
+                </span>
+
+                <img
+                    src="img/alitas.jpg"
+                    alt="Alitas de Pollo">
+
+                <div class="informacion">
+
+                    <h3>
+                        ALITAS DE POLLO
+                    </h3>
+
+                    <p>
+
+                        Crujientes por fuera y jugosas
+                        por dentro. Acompañadas de
+                        papas doradas y salsa.
+
+                    </p>
+
+                    <span class="precio">
+                        Bs. 30
+                    </span>
+
+                    <a
+                        class="btn-pedir"
+                        href="https://wa.link/hqa40t"
+                        target="_blank">
+
+                        Pedir
+
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUCTO 2 -->
+
+            <article>
+
+                <span class="etiqueta">
+                    Crujiente
+                </span>
+
+                <img
+                    src="img/nuggets.jpg"
+                    alt="Nuggets">
+
+                <div class="informacion">
+
+                    <h3>
+                        NUGGETS CRUJIENTES
+                    </h3>
+
+                    <p>
+
+                        ¡Deliciosos, crocantes y listos
+                        para disfrutar! 😋
+
+                        Nuestros Nuggets de Pollo están
+                        elaborados con carne de pollo
+                        seleccionada y empanizados para
+                        conseguir una textura crocante
+                        por fuera y suave por dentro.
+
+                    </p>
+
+                    <span class="precio">
+                        Bs. 45
+                    </span>
+
+                    <a
+                        class="btn-pedir"
+                        href="https://wa.link/uy6345"
+                        target="_blank">
+
+                        Pedir
+
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUCTO 3 -->
+
+            <article>
+
+                <span class="etiqueta">
+                    Jugosa
+                </span>
+
+                <img
+                    src="img/hamburguesapollo.jpg"
+                    alt="Hamburguesa de Pollo">
+
+                <div class="informacion">
+
+                    <h3>
+                        HAMBURGUESA DE POLLO
+                    </h3>
+
+                    <p>
+
+                        Deliciosa hamburguesa preparada
+                        con pollo sazonado, acompañada
+                        de ingredientes frescos y servida
+                        en un pan suave y esponjoso.
+
+                    </p>
+
+                    <span class="precio">
+                        Bs. 32
+                    </span>
+
+                    <a
+                        class="btn-pedir"
+                        href="https://wa.link/uy6345"
+                        target="_blank">
+
+                        Pedir
+
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUCTO 4 -->
+
+            <article>
+
+                <img
+                    src="img/pollocrispy.jpg"
+                    alt="Pollo Crispy">
+
+                <div class="informacion">
+
+                    <h3>
+                        POLLO CRISPY
+                    </h3>
+
+                    <p>
+
+                        Deliciosas piezas de pollo
+                        cuidadosamente sazonadas
+                        y empanizadas hasta conseguir
+                        una cobertura dorada y extra
+                        crujiente.
+
+                    </p>
+
+                    <span class="precio">
+                        Bs. 20
+                    </span>
+
+                    <a
+                        class="btn-pedir"
+                        href="https://wa.link/uy6345"
+                        target="_blank">
+
+                        Pedir
+
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUCTO 5 -->
+
+            <article>
+
+                <span class="etiqueta">
+                    Suavecito al Paladar
+                </span>
+
+                <img
+                    src="img/lomito.png"
+                    alt="Sandwich de Lomito">
+
+                <div class="informacion">
+
+                    <h3>
+                        SANDWICH DE LOMITO
+                    </h3>
+
+                    <p>
+
+                        Delicioso lomito de carne tierno
+                        y jugoso, acompañado de ingredientes
+                        frescos, verduras y salsas, servido
+                        en un pan suave y dorado.
+
+                    </p>
+
+                    <span class="precio">
+                        Bs. 30
+                    </span>
+
+                    <a
+                        class="btn-pedir"
+                        href="https://wa.link/uy6345"
+                        target="_blank">
+
+                        Pedir
+
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUCTO 6 -->
+
+            <article>
+
+                <span class="etiqueta">
+                    Crujiente
+                </span>
+
+                <img
+                    src="img/canasta.jpg"
+                    alt="Pollo a la Canasta">
+
+                <div class="informacion">
+
+                    <h3>
+                        POLLO A LA CANASTA
+                    </h3>
+
+                    <p>
+
+                        Delicioso pollo a la canasta,
+                        preparado con una cobertura
+                        dorada y crujiente.
+
+                    </p>
+
+                    <span class="precio">
+                        Bs. 25
+                    </span>
+
+                    <a
+                        class="btn-pedir"
+                        href="https://wa.link/uy6345"
+                        target="_blank">
+
+                        Pedir
+
+                    </a>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         CONTACTO Y UBICACIÓN
+    ========================================== -->
+
+    <section id="contacto">
+
+        <h2>
+            Contáctanos
+        </h2>
+
+        <h3>
+            📍 UBICACIÓN
+        </h3>
+
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d762.0947906950049!2d-64.89124092155916!3d-14.829307643598115!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93dd6f53c22b50e9%3A0xd67e4eeb21137af8!2sRestaurante%20Pollo%20Farsante!5e1!3m2!1ses!2sbo!4v1790125643875!5m2!1ses!2sbo"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin">
+        </iframe>
+
+    </section>
+
+
+    <!-- =========================================
+         BOTÓN FLOTANTE
+    ========================================== -->
+
+    <a
+        class="whatsapp-flotante"
+        href="https://wa.link/uy6345"
+        target="_blank"
+        title="Pedir por WhatsApp">
+
+        ☎
+
+    </a>
+
+
+    <!-- =========================================
+         PIE DE PÁGINA
+    ========================================== -->
+
+    <footer>
+
+        <h3>
+            Contáctenos y Síguenos
+        </h3>
+
+        <div class="redes">
+
+            <a
+                href="https://acortar.link/VCVshF"
+                target="_blank">
+
+                Facebook
+
+            </a>
+
+            <a
+                href="https://wa.link/uy6345"
+                target="_blank">
+
+                WhatsApp
+
+            </a>
+
+        </div>
+
+        <p>
+            &copy; 2026 Restaurante El Pollo Farsante.
+            Todos los derechos reservados.
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>
